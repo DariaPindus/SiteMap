@@ -11,20 +11,16 @@ import java.util.Map;
 public class UrlNodeTree {
     private List<UrlNodeMy> children;
     private UrlNodeMy root;
-    CategoriesMap categoriesMap;
-    Map<String, String> categories;
 
     public UrlNodeTree() {
         children = new ArrayList<UrlNodeMy>();
         setRoot();
-        //categories = CategoriesMap.getMapFromFile();
     }
 
     private void setRoot() {
         root = new UrlNodeMy();
         root.setLocation("http://upsales.com.ua/");
-        //root.setLabel("upsales");
-        root.setPriority(0);
+        root.setLabel("http://upsales.com.ua/");
     }
 
     public void setRoot(UrlNodeMy root) {
@@ -33,7 +29,7 @@ public class UrlNodeTree {
 
     public List<String> DivideUrl(String input){
         List<String> subParts = new ArrayList<String>();
-        String[] parts = input.split("/|-"); //("/|-") vozmozhno kazhdii v vkruglie skobki
+        String[] parts = input.split("/|-");
         for (int i = 3; i < parts.length; i++ ){
             subParts.add(parts[i]);
         }

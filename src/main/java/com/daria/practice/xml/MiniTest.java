@@ -13,11 +13,9 @@ public class MiniTest {
     public static void main(String[] args) {
         //CategoriesMap map = new CategoriesMap();
         //map.getMapFromFile();
-        String location = "http://upsales.com.ua/zaporozhe/torgovoe_oborudovanie-metallicheskie_shkafy/";
-        String[] subParts = location.split("/");
-        for (String s : subParts) {
-            System.out.println(s);
-        }
+        String link = "http://upsales.com.ua/locality/loadCities.ajax?region=";
+        int i = 2;
+        System.out.println(link+i);
     }
 
 }

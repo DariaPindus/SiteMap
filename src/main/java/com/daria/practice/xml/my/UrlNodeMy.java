@@ -10,6 +10,7 @@ public class UrlNodeMy {
     private String link;
     private double priority;
     private List<UrlNodeMy> children;
+    private boolean succeeded;
 
     public UrlNodeMy(){
         children = new ArrayList<UrlNodeMy>();
@@ -19,9 +20,10 @@ public class UrlNodeMy {
         this.location = location;
         children = new ArrayList<UrlNodeMy>();
         setLabel();
+
+        //ВЫНЕСТИ ЭТО ПРОСТО ТАМ, ГДЕ ВЫВОД ССЫЛКИ
         link = location.substring(0, location.length()-1) + "/";
     }
-
 
     public String getLocation() {
         return location;
@@ -41,17 +43,15 @@ public class UrlNodeMy {
             strs1 = strs1[4].split("-");
         }
         label = strs1[strs1.length - 1];
-        System.out.println("Set label: " + label);
+        //System.out.println("Set label: " + label);
         return label;
     }
 
-    public void setLabel(){
-        //ETO KAKAYA-TO DI4', ISPAV' ETO
-        if (this.location.equals("http://upsales.com.ua/")) {
-            label = "Upsite";
-            return;
-        }
+    public void setLabel(String string){
+        label = string;
+    }
 
+    public void setLabel(){
         String[] subParts = location.split("/");
         if (subParts.length == 4) {
             String name = CitiesMap.getName(subParts[3]);

@@ -16,17 +16,19 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class CategoriesMap implements JsonMap{
+public class CategoriesMap {
 
-    private URL url;
-    private static Map<String, String> map = getMapFromFile();
+    //private URL url = new URL("http://upsales.com.ua/category/loadall.ajax");
+    private static Map<String, String> map = getMap();
 
-    @Override
-    public Map<String, String> getMap(String url) {
+    public CategoriesMap() throws MalformedURLException {
+    }
+
+    public static Map<String, String> getMap() {
         Map<String, String> resultMap = new HashMap<>();
         try {
 
-            URL categoriesUrl = new URL(url);
+            URL categoriesUrl = new URL("http://upsales.com.ua/category/loadall.ajax");
             BufferedReader in = new BufferedReader(new InputStreamReader(categoriesUrl.openStream()));
             JSONParser parser = new JSONParser();
 
@@ -39,11 +41,9 @@ public class CategoriesMap implements JsonMap{
                 JSONObject slide = (JSONObject) i.next();
                 String name = (String) slide.get("name");
                 String transliterated = (String) slide.get("transliterated_name");
-                System.out.println(transliterated + " - " + name);
+                //System.out.println(transliterated + " - " + name);
                 resultMap.put(transliterated, name);
             }
-
-
         } catch (IOException|ParseException  e) {
             e.printStackTrace();
         }
@@ -62,7 +62,6 @@ public class CategoriesMap implements JsonMap{
                 JSONObject slide = (JSONObject) i.next();
                 String name = (String) slide.get("name");
                 String transliterated = (String) slide.get("transliterated_name");
-                //System.out.println(transliterated + " - " + name);
                 resultMap.put(transliterated, name);
             }
         } catch (IOException|ParseException  e) {
